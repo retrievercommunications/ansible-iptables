@@ -12,8 +12,8 @@
   tags:
     - iptables
 
-- include: CentOS.yml
-  when: ansible_distribution == "CentOS"
+- include: RedHat.yml
+  when: ansible_distribution == "RedHat"
   tags:
     - iptables
 
@@ -23,7 +23,6 @@
     - iptables
 
 - name: Create iptables configuration
-  become: yes
   template:
     src: iptables.j2
     dest: "{{ iptables_configuration }}"
@@ -37,7 +36,6 @@
     - iptables
 
 - name: Create iptables6 configuration
-  become: yes
   template:
     src: iptables6.j2
     dest: "{{ iptables6_configuration }}"
@@ -51,7 +49,6 @@
     - iptables
 
 - name: Ensure iptables is started and enabled on boot
-  become: yes
   service:
     name: "{{ iptables_service_name }}"
     state: started

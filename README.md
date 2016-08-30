@@ -8,7 +8,8 @@ Installs and configures iptables.
 Requirements
 ------------
 
-This role requires Ansible 1.9 or higher.
+- Ansible 1.9 or higher.
+- Root privileges, e.g. `become:yes`
 
 Role Variables
 --------------

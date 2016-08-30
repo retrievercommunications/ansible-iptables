@@ -2,7 +2,6 @@
 # handlers file for iptables
 
 - name: restart iptables
-  become: yes
   service:
     name: "{{ iptables_service_name }}"
     state: restarted

@@ -1,5 +1,5 @@
 ---
-# vars file for iptables (CentOS specific)
+# vars file for iptables (RedHat OS family specific)
 
 iptables_packages:
   - iptables

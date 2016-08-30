@@ -2,7 +2,6 @@
 # tasks file for iptables (Ubuntu specific)
 
 - name: Install iptables packages
-  become: yes
   apt:
     name: "{{ item }}"
     state: present

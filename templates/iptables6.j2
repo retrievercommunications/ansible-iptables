@@ -10,7 +10,7 @@ COMMIT
 
 *nat
 :PREROUTING {{ iptables6_nat_prerouting_policy|upper }} [0:0]
-{%- if ansible_distribution|lower != 'centos' %}
+{%- if ansible_distribution|lower != 'redhat' %}
 :INPUT {{ iptables6_nat_input_policy|upper }} [0:0]
 {%- endif %}
 :OUTPUT {{ iptables6_nat_output_policy|upper }} [0:0]

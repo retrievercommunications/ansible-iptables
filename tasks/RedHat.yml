@@ -1,8 +1,7 @@
 ---
-# tasks file for iptables (CentOS specific)
+# tasks file for iptables (RedHat OS family specific)
 
 - name: Install iptables packages
-  become: yes
   yum:
     name: "{{ item }}"
     state: present
