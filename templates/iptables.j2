@@ -9,6 +9,7 @@
 -A INPUT -i lo -j ACCEPT
 -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
 -A INPUT -m conntrack --ctstate INVALID -j DROP
+-A INPUT -p tcp -s {{ iptables_ssh_source_address }} -m tcp --dport {{ iptables_ssh_port }} --tcp-flags FIN,SYN,RST,ACK SYN -m conntrack --ctstate NEW -m comment --comment "SSH" -j ACCEPT
 {%- for rule in iptables_filter_rules -%}
 {% if rule.chain|lower == "input" -%}
 {% if rule.protocol is defined and rule.protocol|lower == "icmp" %}
