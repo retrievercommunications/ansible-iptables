@@ -8,29 +8,32 @@ Installs and configures iptables.
 Requirements
 ------------
 
-This role requires Ansible 1.9 or higher.
+- Ansible 1.9 or higher.
+- Root privileges, e.g. `become:yes`
 
 Role Variables
 --------------
 
-| Name                             | Default                                                                                               | Description                                 |
-|:---------------------------------|:------------------------------------------------------------------------------------------------------|:--------------------------------------------|
-| iptables_filter_input_policy     | drop                                                                                                  | IPv4 default filter input policy            |
-| iptables_filter_forward_policy   | drop                                                                                                  | IPv4 default filter forward policy          |
-| iptables_filter_output_policy    | accept                                                                                                | IPv4 default filter output policy           |
-| iptables_filter_rules            | [{protocol: tcp, source_address: 0.0.0.0/0, destination_port: 22, comment: OpenSSH, target: accept }] | Array of filter rules represented as hashes |
-| iptables_nat_prerouting_policy   | accept                                                                                                | IPv4 default nat prerouting policy          |
-| iptables_nat_input_policy        | accept                                                                                                | IPv4 default nat input policy               |
-| iptables_nat_output_policy       | accept                                                                                                | IPv4 default nat output policy              |
-| iptables_nat_postrouting_policy  | accept                                                                                                | IPv4 default nat postrouting policy         |
-| iptables_nat_rules               | []                                                                                                    | Array of nat rules represented as hashes    |
-| iptables6_filter_input_policy    | drop                                                                                                  | IPv6 default filter input policy            |
-| iptables6_filter_forward_policy  | drop                                                                                                  | IPv6 default filter forward policy          |
-| iptables6_filter_output_policy   | accept                                                                                                | IPv6 default filter output policy           |
-| iptables6_nat_prerouting_policy  | accept                                                                                                | IPv6 default nat prerouting policy          |
-| iptables6_nat_input_policy       | accept                                                                                                | IPv6 default nat input policy               |
-| iptables6_nat_output_policy      | accept                                                                                                | IPv6 default nat output policy              |
-| iptables6_nat_postrouting_policy | accept                                                                                                | IPv6 default nat postrouting policy         |
+| Name                             | Default     | Description                                               |
+|:---------------------------------|:------------|:----------------------------------------------------------|
+| iptables_ssh_source_address      | `0.0.0.0\0` | The default source subnet for the SSH iptables INPUT rule |
+| iptables_ssh_port                | `22`        | The default TCP port for the SSH iptables INPUT rule      |
+| iptables_filter_input_policy     | `drop`      | IPv4 default filter input policy                          |
+| iptables_filter_forward_policy   | `drop`      | IPv4 default filter forward policy                        |
+| iptables_filter_output_policy    | `accept`    | IPv4 default filter output policy                         |
+| iptables_filter_rules            | []          | Array of filter rules represented as hashes.              |
+| iptables_nat_prerouting_policy   | `accept`    | IPv4 default nat prerouting policy                        |
+| iptables_nat_input_policy        | `accept`    | IPv4 default nat input policy                             |
+| iptables_nat_output_policy       | `accept`    | IPv4 default nat output policy                            |
+| iptables_nat_postrouting_policy  | `accept`    | IPv4 default nat postrouting policy                       |
+| iptables_nat_rules               | []          | Array of nat rules represented as hashes                  |
+| iptables6_filter_input_policy    | `drop`      | IPv6 default filter input policy                          |
+| iptables6_filter_forward_policy  | `drop`      | IPv6 default filter forward policy                        |
+| iptables6_filter_output_policy   | `accept`    | IPv6 default filter output policy                         |
+| iptables6_nat_prerouting_policy  | `accept`    | IPv6 default nat prerouting policy                        |
+| iptables6_nat_input_policy       | `accept`    | IPv6 default nat input policy                             |
+| iptables6_nat_output_policy      | `accept`    | IPv6 default nat output policy                            |
+| iptables6_nat_postrouting_policy | `accept`    | IPv6 default nat postrouting policy                       |
 
 Dependencies
 ------------
