@@ -45,7 +45,7 @@ COMMIT
 
 *nat
 :PREROUTING {{ iptables_nat_prerouting_policy|upper }} [0:0]
-{%- if ansible_distribution|lower != 'redhat' %}
+{%- if ansible_os_family|lower != 'redhat' %}
 :INPUT {{ iptables_nat_input_policy|upper }} [0:0]
 {%- endif %}
 :OUTPUT {{ iptables_nat_output_policy|upper }} [0:0]
@@ -62,7 +62,7 @@ COMMIT
 {%- endif %}
 {%- endfor %}
 
-{%- if ansible_distribution|lower != 'redhat' %}
+{%- if ansible_os_family|lower != 'redhat' %}
 {%- for rule in iptables_nat_rules -%}
 {% if rule.chain|lower == "input" -%}
 {% if rule.protocol is defined and rule.protocol|lower == "icmp" %}

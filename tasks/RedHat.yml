@@ -4,7 +4,8 @@
 - name: Install iptables packages
   yum:
     name: "{{ item }}"
-    state: present
+    state: "{{ iptables_pkg_state }}"
+  when: "{{ iptables_pkg_install }}"
   with_items:
     - "{{ iptables_packages }}"
   tags:
