@@ -5,8 +5,34 @@
   yum:
     name: "{{ item }}"
     state: "{{ iptables_pkg_state }}"
-  when: "{{ iptables_pkg_install }}"
+  when: iptables_pkg_install
   with_items:
     - "{{ iptables_packages }}"
+  tags:
+    - iptables
+
+- name: Add additional modules to iptables-config
+  lineinfile:
+    path: "/etc/sysconfig/iptables-config"
+    backup: "{{ iptables_config_backup }}"
+    regexp: "^IPTABLES_MODULES="
+    line: 'IPTABLES_MODULES="{{ iptables_additional_modules | join(" ") }}"'
+    state: present
+  when: iptables_additional_modules is defined and iptables_additional_modules | length > 0
+  notify:
+    - restart iptables
+  tags:
+    - iptables
+
+- name: Reset modules in iptables-config
+  lineinfile:
+    path: "/etc/sysconfig/iptables-config"
+    backup: "{{ iptables_config_backup }}"
+    regexp: "^IPTABLES_MODULES="
+    line: 'IPTABLES_MODULES=""'
+    state: present
+  when: iptables_additional_modules is defined and iptables_additional_modules | length == 0
+  notify:
+    - restart iptables
   tags:
     - iptables
