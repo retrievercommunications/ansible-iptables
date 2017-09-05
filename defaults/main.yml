@@ -4,6 +4,7 @@ iptables_pkg_install: yes
 iptables_pkg_state: present
 
 iptables_config_backup: yes
+iptables_additional_modules: []
 
 iptables_filter_input_policy: drop
 iptables_filter_forward_policy: drop

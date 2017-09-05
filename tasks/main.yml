@@ -2,16 +2,21 @@
 # tasks file for iptables
 
 - name: Include distribution specific variables
-  include_vars: "{{ item }}"
+  include_vars: "{{ var_file }}"
   with_first_found:
     - "{{ ansible_os_family }}-{{ ansible_distribution_major_version }}.yml"
     - "{{ ansible_os_family }}.yml"
+  loop_control:
+    loop_var: var_file
   tags:
     - iptables
 
 - name: Include os family tasks
-  include: RedHat.yml
-  when: ansible_os_family == "RedHat"
+  include: "{{ task_file }}"
+  with_first_found:
+    - "{{ ansible_os_family }}.yml"
+  loop_control:
+    loop_var: task_file
   tags:
     - iptables
 
@@ -23,7 +28,6 @@
     owner: root
     group: root
     mode: 0600
-  register: config_result
   notify:
     - restart iptables
   tags:
@@ -36,7 +40,6 @@
     owner: root
     group: root
     mode: 0600
-  register: config_result
   notify:
     - restart iptables
   tags:
@@ -47,6 +50,5 @@
     name: "{{ iptables_service_name }}"
     state: started
     enabled: yes
-  changed_when: False
   tags:
     - iptables
