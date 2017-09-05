@@ -1,28 +1,23 @@
 # iptables
-* * *
 
 Installs and configures iptables.
 
 ## Source
-* * *
 
 Originally forked from: [GitHub][github_link]
 
 Forked version: v3.0.1-a
 
 ## Requirements
-* * *
 
 - Ansible 2.0 or higher.
 - Root privileges, e.g. `become:yes`
 
 ## Dependencies
-* * *
 
 None
 
 ## Variables
-* * *
 
 | Name | Description | Default |
 |------|-------------|---------|
@@ -31,12 +26,12 @@ None
 | `iptables_filter_input_policy` | IPv4 default filter input policy. | `drop` |
 | `iptables_filter_forward_policy` | IPv4 default filter forward policy. | `drop` |
 | `iptables_filter_output_policy` | IPv4 default filter output policy. | `accept` |
-| `iptables_filter_rules` | Array of filter rules represented as hashes. **see `iptables_filter_rules` details** | `[]` |
+| `iptables_filter_rules` | Array of filter rules represented as hashes. | `[]` |
 | `iptables_nat_prerouting_policy` | IPv4 default nat prerouting policy. | `accept` |
 | `iptables_nat_input_policy` | IPv4 default nat input policy. | `accept` |
 | `iptables_nat_output_policy` | IPv4 default nat output policy. | `accept` |
 | `iptables_nat_postrouting_policy` | IPv4 default nat postrouting policy. | `accept` |
-| `iptables_nat_rules` | Array of nat rules represented as hashes. **see `iptables_nat_rules` details** | `[]` |
+| `iptables_nat_rules` | Array of nat rules represented as hashes. | `[]` |
 | `iptables6_filter_input_policy` | IPv6 default filter input policy. | `drop` |
 | `iptables6_filter_forward_policy` | IPv6 default filter forward policy. | `drop` |
 | `iptables6_filter_output_policy` | IPv6 default filter output policy. | `accept` |
@@ -47,7 +42,6 @@ None
 | `iptables_additional_modules` | A list of additional modules to load. **Applies to RedHat systems only** | `[]` |
 
 ## Example Playbook
-* * *
 
 Install and configure iptables to allow ICMP and OpenSSH
 
@@ -103,12 +97,10 @@ Install and configure iptables with a port forward rule for HTTP
 ```
 
 ### License
-* * *
 
 BSD
 
 ### Original Author Information
-* * *
 
 Kevin Brebanov
 
